@@ -6,6 +6,11 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
 
+
+    public void InitValues(float range, float fireRate){
+        movementRange = range;
+        this.fireRate = fireRate; 
+    }
     float movementRange = 20f;
     float fireRate = 1f;
     // Start is called before the first frame update
@@ -14,6 +19,13 @@ public class BulletController : MonoBehaviour
         StartCoroutine(MoveBullet());
     }
 
+    private void OnCollisionEnter(Collision other) {
+        IHittable hittable;
+           
+        if(other.gameObject.TryGetComponent<IHittable>(out hittable)){
+            hittable.RecieveHit();
+        }
+    }
   
     IEnumerator MoveBullet(){
         Vector3 startPosition = transform.position; // Starting position of the object

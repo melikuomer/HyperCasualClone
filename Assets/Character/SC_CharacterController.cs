@@ -12,12 +12,9 @@ public class SC_CharacterController : MonoBehaviour
     float startPosition = 0;
 
     float mousePositionScalar = .02f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    float speed = .7f; 
+    
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +28,7 @@ public class SC_CharacterController : MonoBehaviour
 
             float x =  Input.mousePosition.x *mousePositionScalar - startPosition;    
             x=  Math.Clamp(x+transform.position.x,-_limit, _limit );
-        Debug.Log(x);
+            Debug.Log(x);
         
             transform.position = new Vector3(x, transform.position.y, transform.position.z);
             startPosition =  Input.mousePosition.x *mousePositionScalar;
@@ -39,6 +36,7 @@ public class SC_CharacterController : MonoBehaviour
             startPosition = 0;
         }
 
+        transform.position += Time.deltaTime * Vector3.forward *speed;
 
     }
 }
