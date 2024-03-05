@@ -1,15 +1,19 @@
 
+using System;
 
+[Serializable]
 public struct CharacterStateDTO {
    
     public float fireRate; 
     public float range;
 
-    float year; 
+    public float year; 
 
-    float power;
+    public float power;
 
-    float health; 
+    public float health; 
+
+    public float money; 
 
 
     public static CharacterStateDTO operator +(CharacterStateDTO a , CharacterStateDTO b){
@@ -19,7 +23,8 @@ public struct CharacterStateDTO {
                 range = a.range + b.range,
                 year = a.year +b.year,
                 power = a.power + b.power,
-                health = a.health + b.health
+                health = a.health + b.health,
+                money = a.money + b.money
             };
     }
 }

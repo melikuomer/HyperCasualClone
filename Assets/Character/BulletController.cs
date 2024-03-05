@@ -24,6 +24,7 @@ public class BulletController : MonoBehaviour
            
         if(other.gameObject.TryGetComponent<IHittable>(out hittable)){
             hittable.RecieveHit();
+            Destroy(gameObject);
         }
     }
   

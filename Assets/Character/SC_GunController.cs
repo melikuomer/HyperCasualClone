@@ -24,6 +24,8 @@ public class SC_GunController : MonoBehaviour
         if (other.gameObject.TryGetComponent<IInteractable>(out IInteractable interactable))
         {
             characterState += interactable.Interact();
+            Destroy(other.gameObject);
+            Debug.Log(characterState.money);
         }
     }
 

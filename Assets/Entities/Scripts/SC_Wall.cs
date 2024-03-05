@@ -12,7 +12,7 @@ public class SC_Wall : MonoBehaviour , IHittable , IInteractable
     [SerializeField]
     TextMeshPro tmp; 
     float changePerHit = 2f;
-
+    [SerializeField]
     CharacterStateDTO stateDTO = new CharacterStateDTO () ;
     [SerializeField]
     TextMeshPro typeTxt; 

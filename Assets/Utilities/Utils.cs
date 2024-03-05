@@ -43,6 +43,14 @@ public static class Utils {
         return (float)value != 0f;
         
     }
+
+
+    public static float GetValueWithName(object obj , string name){
+        Type type = obj.GetType();
+
+        FieldInfo field = type.GetField(name);
+        return (float)field.GetValue(obj);
+    }
 }
 
 
