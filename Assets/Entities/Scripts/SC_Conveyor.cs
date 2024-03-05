@@ -22,6 +22,7 @@ public class SC_Conveyor : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider other) {
-        transforms.Add(other.transform);
+        if(other.tag.Equals("Clip"))
+            other.GetComponent<Rigidbody>().velocity = Vector3.forward *1f;
     }
 }

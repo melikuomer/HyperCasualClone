@@ -599,15 +599,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 9138094036148180213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4fe60e3ac4db9a41921ad98d9617865, type: 3}
+  m_Script: {fileID: 11500000, guid: cb96289a4e4622e4d904facf6af93ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 20
   tmp: {fileID: 8784247224341854543}
   stateDTO:
-    fireRate: 0
+    fireRate: 20
     range: 0
     year: 0
     power: 0
     health: 0
+    money: 0
   typeTxt: {fileID: 3688407572702779924}

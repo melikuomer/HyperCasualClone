@@ -4,6 +4,7 @@ using System.Reflection;
 public static class Utils {
     public static class ReflectionHelper
 {
+    
     public static string GetNonZeroMemberName(object obj)
     {
         if (obj == null)

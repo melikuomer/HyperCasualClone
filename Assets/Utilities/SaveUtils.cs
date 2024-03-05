@@ -1,17 +1,29 @@
 using UnityEngine;
+using System.Reflection;
+using Unity.VisualScripting;
 
-class SaveUtils{
+public class SaveUtils{
 
-
-    public void SaveState(CharacterStateDTO stateDTO){
-        
+public static float ERROR_CODE = -999;
+    public static void SaveState(CharacterStateDTO stateDTOpersistent){
+        var fields = typeof(CharacterStateDTO).GetFields(BindingFlags.Public | BindingFlags.Instance);
+        foreach (FieldInfo field in fields){
+           
+            PlayerPrefs.SetFloat(field.Name, (float)field.GetValue(stateDTOpersistent));
+        }
 
     }
 
-    public void LoadState(out CharacterStateDTO stateDTOpersistent){
-
-        stateDTOpersistent = new CharacterStateDTO();
-
+    public static void LoadState(ref CharacterStateDTO stateDTO ){
+        object stateDTOpersistent = new CharacterStateDTO();
+      
+        var fields = typeof(CharacterStateDTO).GetFields(BindingFlags.Public | BindingFlags.Instance);
+        foreach (FieldInfo field in fields){
+            float value =  PlayerPrefs.GetFloat(field.Name);            
+            field.SetValue(stateDTOpersistent, value);
+        }
+        
+        stateDTO += (CharacterStateDTO) stateDTOpersistent;
     }
 
 }

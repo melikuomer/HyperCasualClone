@@ -13,6 +13,7 @@ public class SC_CharacterController : MonoBehaviour
 
     float mousePositionScalar = .02f;
 
+    [SerializeField]
     float speed = .7f; 
     
     // Update is called once per frame

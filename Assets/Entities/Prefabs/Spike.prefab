@@ -139,12 +139,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1038071839993176225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c04281375766546b1a0a49e62c2a89, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e0bb0a4dfa17e48b3af8c2868463d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateDTO:
     fireRate: 0
     range: 0
-    year: -1
+    year: 0
     power: 0
     health: 0
+    money: 0

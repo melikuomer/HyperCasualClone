@@ -28,6 +28,7 @@ public class SC_Clip : MonoBehaviour, IHittable
     }
 
 
+    public int GetBullets(){return bulletCount;}
     public void RecieveHit()
     {
         if (!isFull){
