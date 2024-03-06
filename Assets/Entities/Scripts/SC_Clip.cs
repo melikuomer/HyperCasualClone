@@ -32,9 +32,9 @@ public class SC_Clip : MonoBehaviour, IHittable
     public void RecieveHit()
     {
         if (!isFull){
-       AddBullet();
-        bulletCount++;
-    }      
+            AddBullet();
+            bulletCount++;
+        }      
         if (bulletCount == maxBullets){
         isFull =true;
         StartCoroutine(MoveToTarget());
@@ -83,7 +83,7 @@ public class SC_Clip : MonoBehaviour, IHittable
         Vector3 targetPosition = startPosition + Vector3.left * movementRange; 
 
         // Calculate the movement per frame based on movement range and total distance
-        float movementPerFrame = 10f / totalDistance;
+        float movementPerFrame = .3f / totalDistance;
 
         // Calculate the new position for each frame
         float traveledDistance = 0f;

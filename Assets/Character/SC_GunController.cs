@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
+
 
 public class SC_GunController : MonoBehaviour
 {
@@ -9,76 +8,49 @@ public class SC_GunController : MonoBehaviour
     [SerializeField]
     private GameObject _bullet;    
 
-    //this one doesn't persist between levels
-    CharacterStateDTO characterState = new CharacterStateDTO() {fireRate = 1f};
-
-    //this one does persist
-    CharacterStateDTO persistentState=new();
-
+    SO_Gun gun;
     BulletController bc; 
+    float range;
+    float fireRate;
 
-    public void Awake(){
-        SaveUtils.LoadState(ref persistentState);
-
-        //if error code is read that means the save was not existent so we create a new state
-       
-        if(persistentState.fireRate == 0){
-            Debug.Log("save not found or corrupted");
-            persistentState = new(){
-                fireRate = 100,
-                year = 2000,
-
-            };
-        }
-
-    }
-
-    public void OnDestroy() {
-        //Saving state on controller destroyed // saves state between levels
-        Debug.Log("Destroyed");
-        persistentState.money = characterState.money;
-        SaveUtils.SaveState(persistentState);
-
-    }
-
+    GameObject gunObject; 
     
-    public void  OnApplicationQuit() {
-        Debug.Log("Destroyed 3");
-
-        SaveUtils.SaveState(persistentState);
-        
-    }
     
     // Start is called before the first frame update
     public void Start()
     {   
-        characterState = persistentState;
+
         bc = _bullet.GetComponent<BulletController>();
         // read base values from some storage
     }
-    public void OnTriggerEnter(Collider other) {
-        if (other.gameObject.TryGetComponent<IInteractable>(out IInteractable interactable))
-        {
-            characterState += interactable.Interact();
-            Destroy(other.gameObject);
-            Debug.Log(characterState.year);
-        }
-    }
+    
 
     // Update is called once per frame
     public void Update()
     {
         time +=Time.deltaTime;
-        if(time> 50/characterState.fireRate){
-            bc.InitValues(characterState.range, characterState.fireRate);
+        if(time> 50/fireRate){
+            bc.InitValues(range, fireRate);
             Instantiate(_bullet, transform.position, Quaternion.identity);
             time = 0;
-            //spawn bullet for x times; x is bullet count  
-            //ates et
+            
         }
+    }
 
+    public void SetGun(SO_Gun newGun){
+        if(gunObject) Destroy(gunObject);
+        
+        gunObject = Instantiate(newGun.gameObject, transform);
+        range += newGun.gunStats.Range;
+        fireRate += newGun.gunStats.FireRate;
+        if(gun){
+        range -=  gun.gunStats.Range;
+        fireRate -= gun.gunStats.FireRate;
+        }
+        gun = newGun;
 
-
+        range = SC_CharacterState.characterState.Range + gun.gunStats.Range;
+        fireRate = SC_CharacterState.characterState.FireRate + gun.gunStats.FireRate;
     }
 
     

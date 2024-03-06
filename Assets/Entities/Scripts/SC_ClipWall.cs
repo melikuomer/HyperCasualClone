@@ -36,7 +36,7 @@ public class SC_ClipWall : MonoBehaviour, IInteractable
        
         if(tier>=0&& tier<3){
             Debug.Log("HIT");
-        return new CharacterStateDTO(){year = ints[tier]};   }  
+        return new CharacterStateDTO(){Year = ints[tier]};   }  
         else return new CharacterStateDTO();
 
    

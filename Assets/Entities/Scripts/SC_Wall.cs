@@ -19,7 +19,7 @@ public class SC_Wall : MonoBehaviour , IHittable , IInteractable
 
     public CharacterStateDTO Interact()
     {
-        return new CharacterStateDTO () {fireRate= baseValue};
+        return new CharacterStateDTO () {FireRate= baseValue};
     }
 
     public void RecieveHit(){
@@ -34,7 +34,7 @@ public class SC_Wall : MonoBehaviour , IHittable , IInteractable
     // Start is called before the first frame update
     void Start()
     {
-        stateDTO.fireRate= baseValue;
+        stateDTO.FireRate= baseValue;
         string type = Utils.ReflectionHelper.GetNonZeroMemberName(stateDTO);
         typeTxt.text = ObjectNames.NicifyVariableName(type);
     }

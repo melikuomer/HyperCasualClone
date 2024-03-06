@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_ChacterStateSingleton : MonoBehaviour
+public class SO_Glove : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

@@ -19,7 +19,7 @@ public class BulletController : MonoBehaviour
         StartCoroutine(MoveBullet());
     }
 
-    private void OnCollisionEnter(Collision other) {
+    public void OnCollisionEnter(Collision other) {
         IHittable hittable;
            
         if(other.gameObject.TryGetComponent<IHittable>(out hittable)){

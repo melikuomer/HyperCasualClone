@@ -1,10 +1,24 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 public static class Utils {
     public static class ReflectionHelper
 {
     
+
+
+    
+
+    public static List<string> GetFieldNames(object obj){
+        List<string> strings = new();
+        Type type = obj.GetType();
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+        foreach(FieldInfo field in fields){
+            strings.Add(field.Name);
+        }
+        return strings;
+    }
     public static string GetNonZeroMemberName(object obj)
     {
         if (obj == null)
@@ -32,7 +46,7 @@ public static class Utils {
             }
         }
 
-        return " ";
+        return "9999";
     }
 
     private static bool IsNonZero(object value)
