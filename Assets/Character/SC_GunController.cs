@@ -15,11 +15,15 @@ public class SC_GunController : MonoBehaviour
 
     GameObject gunObject; 
     
-    
+    public void OnFireRateChange(float newValue){
+        fireRate +=newValue;
+    }
     // Start is called before the first frame update
     public void Start()
     {   
-
+         range = SC_CharacterState.characterState.Range;
+         fireRate = SC_CharacterState.characterState.FireRate ;
+        SC_CharacterState.onFireRateChanged += OnFireRateChange;
         bc = _bullet.GetComponent<BulletController>();
         // read base values from some storage
     }
@@ -49,8 +53,7 @@ public class SC_GunController : MonoBehaviour
         }
         gun = newGun;
 
-        range = SC_CharacterState.characterState.Range + gun.gunStats.Range;
-        fireRate = SC_CharacterState.characterState.FireRate + gun.gunStats.FireRate;
+        
     }
 
     

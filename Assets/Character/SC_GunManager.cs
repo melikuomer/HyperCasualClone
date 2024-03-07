@@ -44,7 +44,7 @@ public class SC_GunManager : MonoBehaviour
 
     void ChangeGun(){
         int index = PickGun();
-        if (gunIndex>currentGunIndex && gunIndex<10){
+        if ( gunIndex<10){
             //OnYearChanged(SC_CharacterState.characterState.Year);
             currentGunIndex = gunIndex;
             controllers.ForEach(controller =>{
@@ -61,8 +61,5 @@ public class SC_GunManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

@@ -42,6 +42,11 @@ public class SC_CharacterState : MonoBehaviour
     //this one does persist
     public static CharacterStateDTO persistentState=new();
 
+
+
+    [SerializeField]
+    float pushBackForce= 1f;
+
     void InitEvents(){
         List<string> strings =  Utils.ReflectionHelper.GetFieldNames(characterState);
         //TODO fix this with appropriate reflection implementation
@@ -126,17 +131,39 @@ public class SC_CharacterState : MonoBehaviour
         
     }
 
-        public void OnTriggerEnter(Collider other) {
-        if (other.gameObject.TryGetComponent<IInteractable>(out IInteractable interactable))
-        {
-           
-            CharacterStateDTO tempState = interactable.Interact();
-            OnValueChanged(tempState);
-            //characterState += interactable.Interact();
-            Destroy(other.gameObject);
-            Debug.Log(characterState.Year);
+    public void OnTriggerEnter(Collider other) {
+
+    //create  a new ICanPush interface check first if he has it wait its return value 
+    //if it's non zero push yourself back if its zero check IInteractable 
+    //if it's negative kill the player
+
+    if (other.gameObject.TryGetComponent(out ICollidable collidable)){
+        int value =  collidable.Collide();
+
+        if (value < 0){
+            //geri it
+            transform.Translate(Vector3.back *pushBackForce);
+            return;
+        }
+        else if (value ==0){
+            //oldur
+            Debug.Log("YOU DIED");
+            return;
+        }else {
+            //birsey yapma
+
         }
     }
+    if (other.gameObject.TryGetComponent(out IInteractable interactable))
+    {
+        
+        CharacterStateDTO tempState = interactable.Interact();
+        OnValueChanged(tempState);
+        //characterState += interactable.Interact();
+        Destroy(other.gameObject);
+        Debug.Log(characterState.Year);
+    }
+}
 
     
     

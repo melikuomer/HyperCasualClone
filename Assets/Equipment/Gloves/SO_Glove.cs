@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SO_Glove : MonoBehaviour
+[CreateAssetMenu(menuName = "Equipment/Glove")]
+public class SO_Glove : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    public GameObject gameObject;
+    [SerializeField]
+    public CharacterStateDTO gunStats;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    
 }

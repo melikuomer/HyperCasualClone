@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SC_Block : MonoBehaviour , IHittable , IInteractable
+public class SC_Block : MonoBehaviour , IHittable , ICollidable
 {
 
     [SerializeField] 
@@ -11,11 +11,7 @@ public class SC_Block : MonoBehaviour , IHittable , IInteractable
     [SerializeField]
     TextMeshPro healthText;
 
-    public CharacterStateDTO Interact()
-    {
-        throw new System.NotImplementedException();
-    }
-
+   
     public void RecieveHit()
     {
         UpdateHealth(1);
@@ -38,5 +34,10 @@ public class SC_Block : MonoBehaviour , IHittable , IInteractable
     void Update()
     {
         
+    }
+
+    public int Collide()
+    {
+        return 0;
     }
 }
