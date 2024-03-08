@@ -6,6 +6,7 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.SceneManagement;
 
 public class SC_CharacterState : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class SC_CharacterState : MonoBehaviour
 
     
     //this one doesn't persist between levels
-    public static CharacterStateDTO characterState = new CharacterStateDTO() {FireRate = 1f};
+    public static CharacterStateDTO characterState = new CharacterStateDTO();
 
     //this one does persist
     public static CharacterStateDTO persistentState=new();
@@ -120,6 +121,10 @@ public class SC_CharacterState : MonoBehaviour
         //Debug.Log("Destroyed");
         persistentState.Money = characterState.Money;
         SaveUtils.SaveState(persistentState);
+        SC_CharacterState.onFireRateChanged = null;
+        characterState = new();
+        persistentState = new();
+        SceneManager.LoadScene("Level");
 
     }
 
@@ -146,7 +151,7 @@ public class SC_CharacterState : MonoBehaviour
             return;
         }
         else if (value ==0){
-            //oldur
+            Destroy(gameObject);
             Debug.Log("YOU DIED");
             return;
         }else {
@@ -159,7 +164,7 @@ public class SC_CharacterState : MonoBehaviour
         
         CharacterStateDTO tempState = interactable.Interact();
         OnValueChanged(tempState);
-        //characterState += interactable.Interact();
+        characterState += interactable.Interact();
         Destroy(other.gameObject);
         Debug.Log(characterState.Year);
     }

@@ -11,7 +11,8 @@ public class SC_LazySuzan : MonoBehaviour, IInteractable
 
     public CharacterStateDTO Interact()
     {
-        throw new System.NotImplementedException();
+        Destroy(GameObject.FindWithTag("Player").gameObject);
+        return new CharacterStateDTO();
     }
 
     void Start(){

@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyObject: {fileID: 6378393317924095028, guid: ac7d6f9d08c08e44bb2b96de513d2a54, type: 3}
-  requiredHits: 20
+  requiredHits: 10
   tmp: {fileID: 342241215012475078}
 --- !u!65 &4110220777996019741
 BoxCollider:

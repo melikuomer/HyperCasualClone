@@ -873,6 +873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb96289a4e4622e4d904facf6af93ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementStats:
+    canMove: 0
+    isMoving: 0
+    movementSpeed: {x: 0, y: 0, z: 0}
   baseValue: 20
   tmp: {fileID: 8784247224341854543}
   stateDTO:
@@ -885,4 +889,4 @@ MonoBehaviour:
   typeTxt: {fileID: 3688407572702779924}
   shieldObject: {fileID: 3369706510482278660}
   tmpShield: {fileID: 1026744652038233582}
-  shield: 3
+  shield: 20

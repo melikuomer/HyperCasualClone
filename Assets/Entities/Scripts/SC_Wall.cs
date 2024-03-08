@@ -7,6 +7,10 @@ using UnityEngine.UIElements;
 
 public class SC_Wall : MonoBehaviour , IHittable , IInteractable , ICollidable
 {
+
+    [SerializeField]
+    MovementDTO movementStats;
+
     [SerializeField]
     float baseValue = 20f; 
     [SerializeField]
@@ -72,12 +76,22 @@ public class SC_Wall : MonoBehaviour , IHittable , IInteractable , ICollidable
         if(shield>0){
             shieldObject.SetActive(true);
             tmpShield.text = shield.ToString();
+        }else {
+            shieldObject.SetActive(false);
+        }
+    }
+
+        void Move(){
+        if(movementStats.canMove){
+            if(movementStats.isMoving){
+                transform.Translate(movementStats.movementSpeed * Time.deltaTime);
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 }

@@ -10,17 +10,33 @@ public class SC_GunManager : MonoBehaviour
     SO_Gun[] guns ;
     int currentGunIndex= 0;
     int gunIndex=0;
+    [SerializeField]
+    GameObject gunObject;
+    [SerializeField]
+    GameObject cannonObject; 
 
+    List<SC_CannonController> cannonControllers;
     List<SC_GunController> controllers;
-
+    int gunCount = 1;
     int year; 
+
+
+    int cannonCount = 0;
     
 
     void Awake(){
-        controllers = GetComponentsInChildren<SC_GunController>().ToList();
-        
-    }
+        controllers = new();
+        cannonControllers = new();
+        //controllers = GetComponentsInChildren<SC_GunController>().ToList();
+        //create gun object for each gun count
 
+        for (int i =0; i<gunCount ; i++){
+            controllers.Add(Instantiate(gunObject, transform.position+(gunCount-1)*Vector3.left*.5f, Quaternion.identity, transform).GetComponent<SC_GunController>());
+        }
+    }
+    void OnDestroy(){
+        SC_CharacterState.onYearChanged -= OnYearChanged;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +76,16 @@ public class SC_GunManager : MonoBehaviour
         return currentGunIndex;
     }
 
-    // Update is called once per frame
+
+    public void AddGun(){
+        gunCount++;
+        controllers.Add(Instantiate(gunObject, transform.position+(gunCount-1)*Vector3.left*.5f, Quaternion.identity, transform).GetComponent<SC_GunController>());
+        ChangeGun();
+    }
+
+    public void AddCannon(){
+        cannonCount ++;
+        cannonControllers.Add(Instantiate(cannonObject, transform.position+(cannonCount)*Vector3.right*.5f, Quaternion.identity, transform).GetComponent<SC_CannonController>());
+    }
 
 }

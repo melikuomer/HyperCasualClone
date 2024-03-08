@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SC_Enemy : MonoBehaviour , IHittable , ICollidable
 {
+
+
+    [SerializeField]
+    MovementDTO movementStats;
+
     public int Collide()
     {
         throw new System.NotImplementedException();
@@ -21,8 +26,20 @@ public class SC_Enemy : MonoBehaviour , IHittable , ICollidable
     }
 
     // Update is called once per frame
+
+    
+
+    void Move(){
+        if(movementStats.canMove){
+            if(movementStats.isMoving){
+                transform.Translate(movementStats.movementSpeed * Time.deltaTime);
+            }
+        }
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 }

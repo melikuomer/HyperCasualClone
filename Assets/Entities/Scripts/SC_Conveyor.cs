@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SC_Conveyor : MonoBehaviour
 {
+    [SerializeField] 
+    float speed= 3f;
+    
     // Start is called before the first frame update
-
+    
     Material mat; 
     void Start()
     {
@@ -23,6 +26,6 @@ public class SC_Conveyor : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         if(other.tag.Equals("Clip"))
-            other.GetComponent<Rigidbody>().velocity = Vector3.forward *1f;
+            other.GetComponent<Rigidbody>().velocity = Vector3.forward *speed;
     }
 }

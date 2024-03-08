@@ -10,6 +10,10 @@ using UnityEngine.UIElements;
 
 public class SC_Clip : MonoBehaviour, IHittable
 { 
+
+    [SerializeField]
+    MovementDTO movementStats; 
+
     [SerializeField]
     GameObject bullet;
     
@@ -49,7 +53,7 @@ public class SC_Clip : MonoBehaviour, IHittable
         int layerCapacity = 5*(currentLayer+1);
         float temp = 2*bulletsOnCurrentLayer*(float)Math.PI/layerCapacity;
         Vector3 bulletPos = new Vector3((float)Math.Cos(temp)*(currentLayer+1)*.2f,(float) Math.Sin(temp)*(currentLayer+1)*.2f,0);
-        Instantiate(bullet, bulletPos+transform.position + .5f *Vector3.back,Quaternion.identity , transform);
+        Instantiate(bullet, bulletPos+transform.position + 1f *Vector3.back,Quaternion.identity , transform);
          bulletsOnCurrentLayer++;
          
          if (layerCapacity == bulletsOnCurrentLayer){
@@ -110,9 +114,17 @@ public class SC_Clip : MonoBehaviour, IHittable
     // Start is called before the first frame update
     
 
+    void Move(){
+        if(movementStats.canMove){
+            if(movementStats.isMoving){
+                transform.Translate(movementStats.movementSpeed * Time.deltaTime);
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 }

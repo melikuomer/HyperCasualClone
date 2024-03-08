@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractRole
   gameObject: {fileID: 1697296483357883055, guid: c2107d6b89a397a47a200faf13fc5d23, type: 3}
   gunStats:
-    FireRate: 20
-    Range: 10
+    FireRate: 25
+    Range: 12
     Year: 0
-    Power: 1.5
+    Power: 2
     Health: 0
     Money: 0

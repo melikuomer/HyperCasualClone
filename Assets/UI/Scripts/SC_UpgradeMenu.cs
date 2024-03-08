@@ -14,9 +14,13 @@ public class SC_UpgradeMenu : MonoBehaviour
         SC_CharacterState.persistentState.Year +=stateDTO.Year;
     }
     public void onMoreWeaponButton_clicked(){
-        //SC_CharacterState.persistentState.FireRate =+stateDTO.FireRate;
+        GameObject.FindWithTag("Player").GetComponentInChildren<SC_GunManager>().AddGun();
     }
     public void onGloveUpgradeButton_clicked(){
        // SC_CharacterState.persistentState.FireRate =+stateDTO.FireRate;
+    }
+
+    public void onMoreCannonButton_clicked(){
+        GameObject.FindWithTag("Player").GetComponentInChildren<SC_GunManager>().AddCannon();
     }
 }
